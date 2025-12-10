@@ -29,6 +29,29 @@ def add_sales():
         json.dump(data, f, indent=4)
     print("Sales data saved successfully.")
 
-add_sales()
+
+def read_json_file(filepath):
+
+    try:
+       
+        with open(file, 'r') as file:
+          
+            data = json.load(file)
+        return data
+    except FileNotFoundError:
+        print(f"Error: The file '{file}' was not found.")
+        return None
+    except json.JSONDecodeError:
+        print(f"Error: Could not decode JSON from '{file}'. Check file format.")
+        return None
+
+file_content = read_json_file('data.json')
+if file_content:
+    print("Successfully loaded data:")
+    print(file_content)
+    print(f"Name: {file_content.get('name')}")
+
+
+
 
     
